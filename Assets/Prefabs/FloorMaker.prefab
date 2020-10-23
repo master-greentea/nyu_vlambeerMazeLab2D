@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5378c783021624995364905960b49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorPrefab: {fileID: 8979439212572352807, guid: 4348ebabc3612614f8c839ff067102c7,
+    type: 3}
+  floorMakerPrefab: {fileID: 1205195299569171216}
 --- !u!212 &6343382058574851184
 SpriteRenderer:
   m_ObjectHideFlags: 0
