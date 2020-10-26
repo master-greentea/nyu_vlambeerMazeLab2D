@@ -8,7 +8,7 @@ public class RestartButton : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.R)) {
-			SceneManager.LoadScene("VlambeerLabScene");
+			SceneManager.LoadScene("InterestingMinecraftRipoff");
 		}
     }
 }

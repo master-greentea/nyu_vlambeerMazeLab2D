@@ -26,15 +26,15 @@ public static int globalTileCount = 0;
 		if (myCounter < 50) {
 			float rand = Random.Range(0f, 1f); // Generate a random number from 0.0f to 1.0f;
 			// If random number is less than 0.25f, then rotate myself 90 degrees on Z axis;
-			if (rand < .25f) {
+			if (rand < .15f) {
 				transform.Rotate(0f, 0f, 90f);
 			}
 			// ... Else if number is 0.25f-0.5f, then rotate myself -90 degrees on Z axis;
-			else if (rand < .5f) {
+			else if (rand < .3f) {
 				transform.Rotate(0f, 0f, -90f);
 			}
 			// ... Else if number is 0.99f-1.0f, then instantiate a floorMakerPrefab clone at my current position;
-			else if (rand > .99f && rand <= 1f) {
+			else if (rand > .999f && rand <= 1f) {
 				Instantiate(floorMakerPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
 			}
 
