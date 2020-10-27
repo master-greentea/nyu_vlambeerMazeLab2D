@@ -8,7 +8,9 @@ public class RestartButton : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.R)) {
-			SceneManager.LoadScene("InterestingMinecraftRipoff");
+            FloorMaker.globalTileCount = 0;
+            FloorMaker.generatedTiles.Clear();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
     }
 }

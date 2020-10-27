@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6343382058574851184}
   m_Layer: 0
   m_Name: FloorMaker
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   floorPrefab: {fileID: 8979439212572352807, guid: 4348ebabc3612614f8c839ff067102c7,
     type: 3}
   floorMakerPrefab: {fileID: 1205195299569171216}
+  txt: {fileID: 0}
 --- !u!212 &6343382058574851184
 SpriteRenderer:
   m_ObjectHideFlags: 0

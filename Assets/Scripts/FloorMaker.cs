@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // instructions for students: clone this project, open the VlambeerLabScene, and then start working on this script
 // based on: Vlambeer's level generation system for Nuclear Throne https://indienova.com/u/root/blogread/1766
@@ -13,41 +14,49 @@ public class FloorMaker : MonoBehaviour {
 
 //	DECLARE CLASS MEMBER VARIABLES:
 //	Declare a private integer called myCounter that starts at 0;
-private int myCounter = 0; 		// count how many floor tiles this FloorMaker has instantiated
+	private int myCounter = 0; 		// count how many floor tiles this FloorMaker has instantiated
 //	Declare a public Transform called floorPrefab, assign the prefab in inspector;
-public Transform floorPrefab;
+	public Transform floorPrefab;
 //	Declare a public Transform called floorMakerPrefab, assign the prefab in inspector; 
-public Transform floorMakerPrefab;
+	public Transform floorMakerPrefab;
 
-public static int globalTileCount = 0;
+	public static int globalTileCount = 0;
+	public static int tileLimit = 3000;
+	public Text txt;
+
+	public static List<Transform> generatedTiles = new List<Transform>();
 
 	void Update () {
 		// If counter is less than 50, then:
-		if (myCounter < 50) {
+		if (myCounter < 50 && globalTileCount < tileLimit) {
 			float rand = Random.Range(0f, 1f); // Generate a random number from 0.0f to 1.0f;
 			// If random number is less than 0.25f, then rotate myself 90 degrees on Z axis;
-			if (rand < .15f) {
+			if (rand < .35f) {
 				transform.Rotate(0f, 0f, 90f);
 			}
 			// ... Else if number is 0.25f-0.5f, then rotate myself -90 degrees on Z axis;
-			else if (rand < .3f) {
+			else if (rand < .7f) {
 				transform.Rotate(0f, 0f, -90f);
 			}
 			// ... Else if number is 0.99f-1.0f, then instantiate a floorMakerPrefab clone at my current position;
-			else if (rand > .999f && rand <= 1f) {
+			else if (rand > .98f && rand <= 1f) {
 				Instantiate(floorMakerPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
 			}
 
-			Instantiate(floorPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f)); //Instantiate a floorPrefab clone at current position;
+			Transform newTile = Instantiate(floorPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f)); //Instantiate a floorPrefab clone at current position;
 			transform.Translate(0f, 1f, 0f); // Move 1 unit "upwards" based on this object's local rotation
+			generatedTiles.Add(newTile);
 			myCounter++; //Increment counter;
 			globalTileCount++;
-			if (globalTileCount > 500) {
-				Destroy(gameObject);
-			}
 		}
 		else {
-			Destroy(gameObject); // self destruct if I've made enough tiles already
+			if (globalTileCount >= tileLimit) {
+				txt.text = "Press R to create New World\nUse Mouse Scroll to zoom, drag to pan\nMore than 3000 blocks have been generated, cannot generate more";
+				Destroy(this);
+			}
+			else {
+				txt.text = "Press R to create New World\nUse Mouse Scroll to zoom, drag to pan";
+			}
 		}
 		Debug.Log(globalTileCount);
 	}
