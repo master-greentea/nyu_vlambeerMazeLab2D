@@ -26,6 +26,8 @@ public class FloorMaker : MonoBehaviour {
 
 	public static List<Transform> generatedTiles = new List<Transform>();
 
+	public static bool generating;
+
 	void Update () {
 		// If counter is less than 50, then:
 		if (myCounter < 50 && globalTileCount < tileLimit) {
@@ -48,8 +50,13 @@ public class FloorMaker : MonoBehaviour {
 			generatedTiles.Add(newTile);
 			myCounter++; //Increment counter;
 			globalTileCount++;
+			generating = true;
 		}
 		else {
+			generating = false;
+		}
+
+		if (!generating) {
 			if (globalTileCount >= tileLimit) {
 				txt.text = "Press R to create New World\nUse Mouse Scroll to zoom, drag to pan\nMore than 3000 blocks have been generated, cannot generate more";
 				Destroy(this);

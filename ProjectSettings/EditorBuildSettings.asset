@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/InterestingMinecraftRipoff.unity
+    guid: 3ae7435295b4dc14f8e0f994af4cade6
   m_configObjects: {}

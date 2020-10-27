@@ -7,7 +7,7 @@ public class RestartButton : MonoBehaviour
 {
     void Update()
     {
-        if (Input.GetKey(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R)) {
             FloorMaker.globalTileCount = 0;
             FloorMaker.generatedTiles.Clear();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
