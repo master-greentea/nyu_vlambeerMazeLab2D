@@ -52,33 +52,44 @@ public class CameraControls : MonoBehaviour
                 zoomed = true;
             }
 
-            if (Input.GetMouseButtonDown(0)) 
-            {
-                mouseOrigin = Input.mousePosition;
-                isPanning = true;
-            }
-    
-    
-            // cancel on button release
-            if (!Input.GetMouseButton(0)) 
-            {
-                isPanning = false;
-            }
-    
+            // if (Input.GetMouseButtonDown(0)) 
+            // {
+            //     mouseOrigin = Input.mousePosition;
+            //     isPanning = true;
+            // }
+
+
+            // // cancel on button release
+            // if (!Input.GetMouseButton(0))
+            // {
+            //     isPanning = false;
+            // }
+
             //move camera on X & Y
-            if (isPanning) 
-            {
-                panned = true;
-                Vector3 pos = cam.ScreenToViewportPoint(Input.mousePosition - mouseOrigin);
-    
-                Vector3 move = new Vector3(-pos.x * panSpeed, -pos.y * panSpeed, 0);
-    
-                transform.Translate(move, Space.World);
-            }
+            // if (isPanning)
+            // {
+            //     panned = true;
+            //     Vector3 pos = cam.ScreenToViewportPoint(Input.mousePosition - mouseOrigin);
+
+            //     Vector3 move = new Vector3(-pos.x * panSpeed, -pos.y * panSpeed, 0);
+
+            //     transform.Translate(move, Space.World);
+            // }
+
+            PanCamera();
 
             if (cam.orthographicSize < 1) {
                 cam.orthographicSize = 1;
             }
+        }
+    }
+    private void PanCamera(){
+        if(Input.GetMouseButtonDown(0)){
+            mouseOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+        }
+        if(Input.GetMouseButton(0)){
+            Vector3 difference = mouseOrigin - cam.ScreenToWorldPoint(Input.mousePosition);
+            cam.transform.position += difference;
         }
     }
 }
